@@ -5,7 +5,7 @@ context('Classes endpoint', () => {
     //Request URL: http://localhost:3333/classes
     //Request Method: POST
     //Status Code: 201 Created
-    it('POST - Cadastrar um novo provessor', () => {
+    it('POST - Cadastrar um novo professor', () => {
         cy.api({
             method: 'POST',
             url: `${Cypress.config().apiUrl}/classes`,
@@ -27,7 +27,7 @@ context('Classes endpoint', () => {
         }).then((response) =>{
             expect(response.status).to.eq(201)
 
-            expect(response.duration).lt(30)
+            expect(response.duration).lt(60)
 
         })
     });
