@@ -1,0 +1,27 @@
+name: Run tests
+
+on:
+  push:
+    branches: [main]
+    
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Instalar as dependencias do server
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: server
+      - name: Instalar as dependencias do web
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: web
+      - name: Component & API & UI Tests
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: web
+          install: false
+          start: npm run start:ci
+          wait-on: 'http://localhost:3000/'
